@@ -1,7 +1,40 @@
+* {
+  color: #EDFFEC
+}
+
+.bgcolor {
+  background-color: #1F1F1F;
+}
+
 .current {
-  color: green;
+  color: #119822;
+}
+
+.footer {
+  font-family:'Segoe UI';
+  font-size: 20px;
+}
+
+.nicemargins {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+// ====================================================== //
+h1 {
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 48px;
 }
 
 h2 {
-   font-variant:small-caps; 
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 32px;
+  font-variant:small-caps; 
 }
+
+p {
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+// #1F1F1F #2A7221 #119822 #EDFFEC #EBEBEB

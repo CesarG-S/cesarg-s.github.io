@@ -4,4 +4,4 @@ title: About
 permalink: /about/
 ---
 
-This page has no information at the moment.
+Psst. There's nothing here. Or is there...?
