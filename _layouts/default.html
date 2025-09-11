@@ -1,19 +1,19 @@
 <!doctype html>
 <html lang="en">
   {%- include header.html -%}
+  
+  <body class="section-dark">
+    <div class="page-wrapper">
+      {%- include navigation.html -%}
 
-  {%- include navigation.html -%}
-  <body class="bgcolor">
-    <div class="nicemargins">
+      <main class="main-content section-content">
+        <h1>{{ page.title }}</h1>
+        <section>
+          {{ content }}
+        </section>
+      </main>
 
-    <h1>{{ page.title }}</h1>
-    <section>
-      {{ content }}
-    </section>
+      {%- include footer.html -%}
     </div>
-    
-    
   </body>
-
-  {%- include footer.html -%}
 </html>
