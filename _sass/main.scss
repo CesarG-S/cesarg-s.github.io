@@ -110,6 +110,12 @@ p {
   }
 }
 
+.section-content ol {
+  padding-left: 2em;
+  margin-left: 1em;
+  line-height: 1.6;
+}
+
 .page-wrapper {
   min-height: 100vh;
   display: flex;

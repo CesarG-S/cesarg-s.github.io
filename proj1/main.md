@@ -55,13 +55,13 @@ After this, once I calculate my displacements, I apply them to the *original* im
 ## Single-scale Euclidean Distance
 The process for calculating the proper displacements and creating a colored image using the Euclidean Distance is as follows:
 
-        1. Import the image as a float
-        2. Crop the outside 15% of the blue, green, and red channels. 
-        3. Calculate the displacements needed to align the cropped red and blue channels using the cropped green channel as the reference.
-        4. Align the original red and blue channels with the original green channel using the displacements from the cropped channels.
-        5. Combine the color channels back into a matrix and display the image.
-        6. Optional. Crop the colored image to remove the ugly miscolored borders.
-        7. Relish in the beauty of your wonderful colored image.  
+1. Import the image as a float
+2. Crop the outside 15% of the blue, green, and red channels. 
+3. Calculate the displacements needed to align the cropped red and blue channels using the cropped green channel as the reference.
+4. Align the original red and blue channels with the original green channel using the displacements from the cropped channels.
+5. Combine the color channels back into a matrix and display the image.
+6. Optional. Crop the colored image to remove the ugly miscolored borders.
+7. Relish in the beauty of your wonderful colored image.  
 
 <br>
 For step 3, the calculation step involves taking either the red or blue channel, applying an offset in both the x and y directions (with np.roll), then taking the difference between the offset channel and the green reference channel element-wise for every pixel value, squaring that difference, and adding up all the squared differences. I keep track of the minimum sum of squared distances and the offset used to achieve that sum for all offsets. My offsets are [-16,16], meaning I take the entire red channel, for example, shift all the pixels X amount to the left/right and Y amount up/down, and then sum the squared distances, for all values of X and Y between -16 and 16.
