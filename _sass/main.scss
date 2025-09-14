@@ -110,7 +110,7 @@ p {
   }
 }
 
-.section-content ol {
+.section-content ul, ol {
   padding-left: 2em;
   margin-left: 1em;
   line-height: 1.6;
@@ -125,6 +125,38 @@ p {
 .main-content {
   flex: 1;
   padding-bottom: $space-xl;
+}
+
+// ==================================
+// Table Styles
+// ==================================
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: $space-md 0;
+  font-size: 1rem;
+  color: $color-text;
+
+  thead {
+    background-color: darken($color-background, 5%);
+  }
+
+  th,
+  td {
+    border: 1px solid lighten($color-shadow, 10%);
+    text-align: left;
+    padding: $space-xs $space-sm;
+  }
+
+  th {
+    font-family: $font-heading;
+    font-weight: bold;
+    color: $color-heading;
+  }
+
+  tr:nth-child(even) {
+    background-color: lighten($color-background, 5%);
+  }
 }
 
 // ==================================
