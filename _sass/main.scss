@@ -168,6 +168,8 @@ table {
 
 .image-row {
   display: flex;
+  align-items: center;
+  justify-content: center;
   gap: $space-sm;
   flex-wrap: wrap;
   justify-content: center;
@@ -196,8 +198,135 @@ table {
   }
 }
 
+.image-hover-swap {
+  position: relative;
+  display: inline-block;
+
+  img {
+    transition: opacity 0.3s ease-in-out;
+
+    &.hover-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+    }
+  }
+
+  &:hover {
+    .hover-image {
+      opacity: 1;
+    }
+
+    .default-image {
+      opacity: 0;
+    }
+  }
+}
+
 // ==================================
-// DRY Image Width Classes (looped)
+// Math Styling
+// ==================================
+
+.math-left mjx-container {
+  text-align: left !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+.math-center mjx-container {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.math-right mjx-container {
+  text-align: right !important;
+  margin-left: auto !important;
+  margin-right: 0 !important;
+}
+
+/* Font sizes for mjx-container */
+.math-size-50 mjx-container { font-size: 0.5em !important; }
+.math-size-75 mjx-container { font-size: 0.75em !important; }
+.math-size-90 mjx-container { font-size: 0.9em !important; }
+.math-size-100 mjx-container { font-size: 1em !important; }
+.math-size-125 mjx-container { font-size: 1.25em !important; }
+.math-size-150 mjx-container { font-size: 1.5em !important; }
+.math-size-200 mjx-container { font-size: 2em !important; }
+
+// ==================================
+// Code Styling
+// ==================================
+
+// Code blocks (inside <pre><code>) get styled by .highlight
+pre code {
+  padding: 0;
+  background: none;
+  color: inherit;
+  font-size: inherit;
+}
+
+// Inline code only
+p code, li code {
+  padding: 0.2em 0.4em;
+  font-size: 0.95rem;
+  background-color: lighten($color-background, 5%);
+  color: lighten($color-accent, 5%);
+  border-radius: 3px;
+}
+
+.highlight {
+  background: darken($color-background, 3%);
+  padding: 0;
+  overflow-x: auto;
+  border-radius: 6px;
+  border: 1px solid lighten($color-shadow, 10%);
+  margin-bottom: $space-md;
+
+  pre {
+    margin: 0;
+    padding: $space-sm;
+    background: transparent;
+    color: $color-text;
+    font-family: 'Fira Code', 'Courier New', Courier, monospace;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  table {
+    width: 100%;
+    border: none;
+    border-collapse: collapse;
+  }
+
+  td {
+    padding: 0;
+    border: none;
+  }
+
+  .gutter {
+    display: none;
+  }
+
+  // Rouge token styles
+  .c, .c1, .cm, .cp { color: #6a9955; font-style: italic; }  // Comments in nice green
+  .k, .kd, .kp, .kr, .kt { color: $color-accent; font-weight: bold; }  // Keywords
+  .nf { color: $color-heading; font-weight: bold; }  // Function names
+  .na { color: lighten($color-heading, 10%); }  // Attribute names
+  .nb { color: $color-accent; }  // Built-in names
+  .nc { color: lighten($color-text, 5%); font-weight: bold; }  // Class names
+  .no { color: lighten($color-accent, 15%); }  // Constants
+  .nv { color: $color-text; }  // Variable names (back to base text color)
+  .s, .s1, .s2 { color: #d19a66; }  // Strings
+  .mi, .mf { color: lighten($color-heading, 20%); }  // Numbers
+  .o { color: #56b6c2; }  // Operators
+  .p { color: lighten($color-shadow, 25%); }  // Punctuation
+  .err { color: red; background-color: yellow; font-weight: bold; }  // Errors
+}
+
+// ==================================
+// Image Width Classes
 // ==================================
 [class^="img-"] {
   max-width: 100%;
