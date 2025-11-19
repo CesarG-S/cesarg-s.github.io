@@ -439,3 +439,5 @@ All together, this process saves me a lot of time, since I no longer have to man
         <figcaption>Tree manual match (bilinear)</figcaption>
     </figure>
 </div>
+
+I'm super satisfied with this work. The automatic stitcher certainly got more points than me and was able to more accurately pick matches.
