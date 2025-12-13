@@ -174,6 +174,38 @@ Other values of interest include:
     $$ v_\sigma~ \text{is random predicted noise} $$
 </div>
 
+We try iterative denoising on our image of the Campanile:
+<div class="image-row"> 
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/campanile_i10.png" alt="Campanile 450" class="img-10">
+        <figcaption>Campanile at t=450</figcaption>
+    </figure>
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/campanile_i15.png" alt="Campanile 600" class="img-10">
+        <figcaption>Campanile at t=600</figcaption>
+    </figure>
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/campanile_i20.png" alt="Campanile 750" class="img-10">
+        <figcaption>Campanile at t=750</figcaption>
+    </figure>
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/campanile_i25.png" alt="Campanile 900" class="img-10">
+        <figcaption>Campanile at t=900</figcaption>
+    </figure>
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/campanile_i30.png" alt="Campanile 990" class="img-10">
+        <figcaption>Campanile denoised iteratively</figcaption>
+    </figure>
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/campanile_onestep.png" alt="Campanile onestep" class="img-10">
+        <figcaption>Campanile denoised in one shot</figcaption>
+    </figure>
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/campanile_unblurred.png" alt="Campanile unblur" class="img-10">
+        <figcaption>Campanile noise unblurred</figcaption>
+    </figure>
+</div>
+
 Since we now have an iterative denoising loop, it makes sense to try starting from pure noise to see what the model generates.
 
 <div class="image-row"> 
@@ -647,3 +679,14 @@ Another illusion you can do is similar to the hybrid images of project 2. The id
     </figure>
 </div>
 Two very different images but with the same illusion. Very entertaining.
+
+## Building the actual UNet
+So we went in and manipulated a bunch of images, but we used a model that was given to us. Now it is my turn to actually build the UNet that does the image generation.
+
+This is the UNet that I will build.
+<div class="image-row"> 
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/unet_chart.png" alt="Unet" class="img-33">
+        <figcaption>UNet</figcaption>
+    </figure>
+</div>
