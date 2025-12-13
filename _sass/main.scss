@@ -334,7 +334,7 @@ p code, li code {
   display: block;
 }
 
-$img-widths: (20, 33, 50, 67);
+$img-widths: (10, 20, 33, 50, 67);
 
 @each $w in $img-widths {
   .img-#{$w} {
