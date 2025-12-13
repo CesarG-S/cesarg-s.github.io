@@ -9,7 +9,40 @@ The goal of this project is to deploy a diffusion model for image generation.
 ## Noising and Denoising
 In diffusion, the idea is to train a model to generate a clean image given a noisy image. It essentially learns how to undo the noise in an image and push an image to the image manifold.
 
-Before we can denoise an image, it helps to be able to add noise to an image.
+The model I will use is a diffusion pipeline provided by DeepFloyd. The first stage transforms the noisy inputs into an actual image, while the second stage upscales the image from 64x64 to 256x256.
+
+Here are some examples of images it can generate. You first have to convert your prompts into prompt embeddings, but after that, it's very simple. I used seed=1987 before generating my images. The number of inference steps your model takes affects how good the images look. These images were created with num_inference_steps=20.
+<div class="image-row"> 
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/campanile_floyd.png" alt="Campanile steps=20" class="img-20">
+        <figcaption>A picture of the Berkeley Campanile</figcaption>
+    </figure>
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/campfire_floyd.png" alt="Campanile steps=20" class="img-20">
+        <figcaption>An oil painting of people around a campfire</figcaption>
+    </figure>
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/cheesesteak_floyd.png" alt="Campanile steps=20" class="img-20">
+        <figcaption>A man eating a 5 foot long cheesesteak</figcaption>
+    </figure>
+</div>
+Not bad, but these images were created with num_inference_steps=200.
+<div class="image-row"> 
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/campanile_floyd200.png" alt="Campanile steps=200" class="img-20">
+        <figcaption>A picture of the Berkeley Campanile</figcaption>
+    </figure>
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/campfire_floyd200.png" alt="Campanile steps=200" class="img-20">
+        <figcaption>An oil painting of people around a campfire</figcaption>
+    </figure>
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/cheesesteak_floyd200.png" alt="Campanile steps=200" class="img-20">
+        <figcaption>A man eating a 5 foot long cheesesteak</figcaption>
+    </figure>
+</div>
+
+Great, now we have an idea of what we're working with. Before we can denoise an image, it helps to be able to add noise to an image.
 
 The forward process is as follows:
 <div class="math-size-150">
@@ -17,8 +50,6 @@ The forward process is as follows:
 </div>
 
 Given a clean image x_0, we get the noisy image x_t at timestep t by taking a weighted sum of x_0 and noise. The alpha values are determined at each timestep by the model scheduler. My timesteps are such that t=0 is a clean image, and t=1000 is a pure noise image.
-
-Speaking of the model, the one I will use is a diffusion pipeline provided by DeepFloyd. The first stage transforms the noisy inputs into an actual image, while the second stage upscales the image from 64x64 to 256x256.
 
 <div class="image-row"> 
     <figure class="image-with-subtitle">
