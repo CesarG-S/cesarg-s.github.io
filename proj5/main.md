@@ -267,6 +267,8 @@ Gamma is a value that controls the strength of CFG. Interestingly, when gamma > 
     </figure>
 </div>
 
+
+## SDEdit
 So we have shown that we can generate an image from random noise, but what if the input wasn't random noise, but a known noisy object? If we start with, say, a noisy picture of the Campanile, but feed the model with a prompt like "a high quality photo", the hope is that we generate an image of something that looks like the Campanile. More generally, we can translate between two similar images if we start with a noisy version and a text prompt. If the image that we start with is less noisy, then the output will look more like the start, but if the image we start with is very noisy, there is a good chance that we end up with a very different (yet subtly similar) output image. To demonstrate this, I generated a few images starting with an image of the Campanile at varying noise levels (represented by i_start, AKA which strided timestep you start at; larger i_start=less initial noise).
 
 <div class="image-row"> 
@@ -686,7 +688,187 @@ So we went in and manipulated a bunch of images, but we used a model that was gi
 This is the UNet that I will build.
 <div class="image-row"> 
     <figure class="image-with-subtitle">
-        <img src="/assets/images/proj5/unet_chart.png" alt="Unet" class="img-33">
+        <img src="/assets/images/proj5/unet_chart.png" alt="Unet" class="img-50">
         <figcaption>UNet</figcaption>
     </figure>
 </div>
+
+We can then train our denoiser rather easily. We use the MNIST handwritten digit dataset and a simple L2 loss to train the model. For each step of the training loop, we generate a noisy image z from a clean image x as follows:
+<div class="math-size-150">
+    $$ z = x + \sigma\epsilon \quad \text{where}~ \epsilon \sim N(0, I) $$
+</div>
+
+I take an image from the MNIST dataset and show the result of adding noise for varying noise (sigma) levels:
+<div class="image-row"> 
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/noise_process_output.png" alt="Noising" class="img-50">
+        <figcaption>Noisy image output for varying sigma values</figcaption>
+    </figure>
+</div>
+
+Now we can train our model using sigma = 0.5, the Adam optimizer with lr = 1e-4, and hidden dimension D = 128 in our UNet. The results are as follows after 1 epoch and after 5 epochs:
+<div class="image-row"> 
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/simple_training_output1.png" alt="Training 1 epoch" class="img-20">
+        <figcaption>Input and outputs after 1 epoch</figcaption>
+    </figure>
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/simple_training_output5.png" alt="Noising" class="img-20">
+        <figcaption>Inputs and outputs after 5 epochs</figcaption>
+    </figure>
+</div>
+
+<div class="image-row"> 
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/simple_training_loss_curve.png" alt="Training loss" class="img-33">
+        <figcaption>MSELoss per batch for 5 epochs</figcaption>
+    </figure>
+</div>
+
+Since we trained our model based on a noise value (sigma) of 0.5, it would be interesting to see how it performs for varying levels of noise. The results are not too surprising:
+<div class="image-row"> 
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/out_of_distribution_eval.png" alt="Out of distribution" class="img-50">
+        <figcaption>Out of distribution testing</figcaption>
+    </figure>
+</div>
+
+The model is already trained to handle a noise level of 0.5, so anything below is encompassed by it. However, the model struggles a little more for noise levels above 0.5, but still does a fairly good job at getting a recognizable digit out, though sigma=0.8 did particularly bad.
+
+If we train our UNet to denoise pure noise, something interesting happens:
+<div class="image-row"> 
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/pure_noise_denoise_loss_curve.png" alt="Training loss" class="img-33">
+        <figcaption>MSELoss per batch for 5 epochs</figcaption>
+    </figure>
+</div>
+
+<div class="image-row"> 
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/denoise_pure_noise1.png" alt="Training 1 epoch" class="img-50">
+        <figcaption>Outputs after 1 epoch</figcaption>
+    </figure>
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/denoise_pure_noise5.png" alt="Noising" class="img-50">
+        <figcaption>Outputs after 5 epochs</figcaption>
+    </figure>
+</div>
+
+It is hard to tell, but the model cannot really train on denoising random noise, since it could belong to any digit. What ends up happening is the model learns the underlying patterns for handwritten digits. The difference is subtle for epoch 1 vs. epoch 5, but epoch 5 is slightly less noisy.
+
+## Time-Conditioned UNet
+The model we currently have is a bit limited, since it essentially just performs one-step denoising. If we could iteratively denoise, that would be a lot better. If we train a model to predict the flow from our noisy image to a clean image, then we could iteratively walk along the flow to generate a clean image.
+
+We can "draw" a line between a noisy image and a clean image as follows:
+<div class="math-size-150">
+    $$ x_t = (1-t)x_0 + tx_1 $$
+</div>
+
+To find how x_t changes with respect to time, we take the derivative with respect to t:
+<div class="math-size-150">
+    $$ \frac{d}{dt}x_t = x_1 - x_0 $$
+</div>
+
+It is this value that we train our model to approximate. We add time conditioning to our UNet (unflatten becomes unflatten * t1, and so on; the basic idea is multiply by FCBlock(t) at the dotted arrows):
+<div class="image-row"> 
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/time_unet_chart.png" alt="Time UNet" class="img-50">
+        <figcaption>Time-conditioned UNet</figcaption>
+    </figure>
+</div>
+
+Training the model is a little different now.
+<div class="image-row"> 
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/time_unet_train_loop.png" alt="Time UNet Training" class="img-50">
+        <figcaption>Time-conditioned UNet training</figcaption>
+    </figure>
+</div>
+
+We take an image x_1 from the MNIST dataset, randomly sample a timestep t between 0 and 1, sample a random image x_0, and calculate x_t using the above formula. We then calculate the MSELoss on the actual flow and the predicted flow. I trained my model with batch_size = 64, learning rate = 1e-2, hidden_dim = 64, with an ExponentialLR scheduler, and 10 epochs.
+<div class="image-row"> 
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/time_unet_loss_curve.png" alt="Time UNet Loss Curve" class="img-33">
+        <figcaption>MSELoss per batch for 10 epochs</figcaption>
+    </figure>
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/time_unet_loss_curve_per_epoch.png" alt="Time UNet Loss Curve" class="img-50">
+        <figcaption>MSELoss per epoch</figcaption>
+    </figure>
+</div>
+
+After training, I sampled 40 digits from the model for epochs 1, 5, and 10. The sampling algorithm is as follows:
+<div class="image-row"> 
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/time_unet_sampling.png" alt="Time UNet Sampling" class="img-50">
+        <figcaption>Time UNet sampling algorithm</figcaption>
+    </figure>
+</div>
+
+Essentially, you start with x_t, which is a random noisy image. You then evenly walk through the timesteps between 0 and 1 for T timesteps, each of step size 1/T. You iteratively add to x_t the predicted flow at timestep t weighted by 1/T.
+
+<div class="image-row"> 
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/time_unet_epoch1.png" alt="Time UNet Sample epoch 1" class="img-20">
+        <figcaption>Epoch 1</figcaption>
+    </figure>
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/time_unet_epoch5.png" alt="Time UNet Sample epoch 5" class="img-20">
+        <figcaption>Epoch 5</figcaption>
+    </figure>
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/time_unet_epoch10.png" alt="Time UNet Sample epoch 10" class="img-20">
+        <figcaption>Epoch 10</figcaption>
+    </figure>
+</div>
+
+## Class-Conditioned UNet
+There are discernable digits, but there are also a few indiscernable scribbles. To improve the samples, we can condition by class in addition to time. The model itself does not change too drastically - it simply also takes in a digit representing the class (one-hot vector for a digit 0-9) for conditioning. To make the model a little more sophisticated, we implement dropout, where 10% of the time, we set the class conditioning vector to 0 (not the class 0). Conditioning c is similar to conditioning t, but instead of unflatten * t1, we do c1 * unflatten + t1, and so on, where c is the output of FCBlock(c).
+
+The training loop is almost identical to the time-conditioned UNet loop:
+<div class="image-row"> 
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/class_unet_train_loop.png" alt="Class UNet Training" class="img-50">
+        <figcaption>Class-conditioned UNet training</figcaption>
+    </figure>
+</div>
+
+The major differences are you make c into a one-hot vector, and zero it out with probability p_uncond. The model also takes in c as an input, but everything else is the same. The hyperparameters were the same as in the time-conditioned UNet.
+<div class="image-row"> 
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/class_unet_loss_curve.png" alt="Class UNet Loss Curve" class="img-33">
+        <figcaption>MSELoss per batch for 10 epochs</figcaption>
+    </figure>
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/class_unet_loss_curve_per_epoch.png" alt="Class UNet Loss Curve" class="img-50">
+        <figcaption>MSELoss per epoch</figcaption>
+    </figure>
+</div>
+
+The sampling algorithm is also different:
+<div class="image-row"> 
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/class_unet_sampling.png" alt="Class UNet Sampling" class="img-50">
+        <figcaption>Class UNet sampling algorithm</figcaption>
+    </figure>
+</div>
+
+The algorithm incorporates classifier-free guidance, as we use the model to generate an conditional flow (input c vector for class) and an unconditional flow (input zero vector for class), take a combination of the flows weighted by gamma (I used gamma = 5), and iteratively add to an initial random noise image for timesteps between 0 and 1 of step size 1/T.
+
+I made my model output four instances of each digit, and here they are:
+<div class="image-row"> 
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/class_unet_epoch1.png" alt="Class UNet Sample epoch 1" class="img-20">
+        <figcaption>Epoch 1</figcaption>
+    </figure>
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/class_unet_epoch5.png" alt="Class UNet Sample epoch 5" class="img-20">
+        <figcaption>Epoch 5</figcaption>
+    </figure>
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/proj5/class_unet_epoch10.png" alt="Class UNet Sample epoch 10" class="img-20">
+        <figcaption>Epoch 10</figcaption>
+    </figure>
+</div>
+
+Out of curiosity, I removed the scheduler, and the resulting images were of worse quality. If I had more time, I would definitely try to improve the model without, but to be completely frank, having it made the digit quality a lot better, so you might as well keep it.
