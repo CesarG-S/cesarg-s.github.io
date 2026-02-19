@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: /project0/
+permalink: /cs180/project0/
 title: CS180 - Project 0
 ---
 ## Selfie Perspective

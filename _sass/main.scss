@@ -1,13 +1,13 @@
-// CSS style guide made with ChatGPT's assistance
+// CSS style guide
 
 // ==================================
 // Variables
 // ==================================
-$color-background: #1F1F1F;       // original dark background
-$color-text: #EDFFEC;             // original light text
-$color-accent: #ff69b4;           // magenta/pink accent for highlights and links
-$color-heading: #6ad98a;          // green tone for headings or emphasis
-$color-shadow: #121212;           // slightly lighter dark gray for borders or shadows
+$color-background: #1F1F1F; // original dark background
+$color-text: #EDFFEC; // original light text
+$color-accent: #ff69b4; // magenta/pink accent for highlights and links
+$color-heading: #6ad98a; // green tone for headings or emphasis
+$color-shadow: #121212; // slightly lighter dark gray for borders or shadows
 
 $font-heading: "Segoe UI Semibold", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $font-body: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -32,9 +32,9 @@ $space-xxl: 4rem;
 // Mixins
 // ==================================
 @mixin respond-mobile {
-  @media (max-width: $breakpoint-mobile) {
-    @content;
-  }
+    @media (max-width: $breakpoint-mobile) {
+        @content;
+    }
 }
 
 // ==================================
@@ -43,185 +43,185 @@ $space-xxl: 4rem;
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  background-color: $color-background;
-  color: $color-text;
-  font-family: $font-body;
-  font-size: $font-size-base;
-  line-height: 1.6;
+    background-color: $color-background;
+    color: $color-text;
+    font-family: $font-body;
+    font-size: $font-size-base;
+    line-height: 1.6;
 }
 
 // ==================================
 // Typography
 // ==================================
 h1 {
-  font-family: $font-heading;
-  font-size: $font-size-h1;
-  margin-bottom: $space-sm;
-  color: $color-heading;
+    font-family: $font-heading;
+    font-size: $font-size-h1;
+    margin-bottom: $space-sm;
+    color: $color-heading;
 
-  @include respond-mobile {
-    font-size: 2rem;
-  }
+    @include respond-mobile {
+        font-size: 2rem;
+    }
 }
 
 h2 {
-  font-family: $font-heading;
-  font-size: $font-size-h2;
-  font-variant: small-caps;
-  margin-bottom: 0.75rem;
-  color: $color-heading;
+    font-family: $font-heading;
+    font-size: $font-size-h2;
+    font-variant: small-caps;
+    margin-bottom: 0.75rem;
+    color: $color-heading;
 
-  @include respond-mobile {
-    font-size: 1.5rem;
-  }
+    @include respond-mobile {
+        font-size: 1.5rem;
+    }
 }
 
 p {
-  font-family: $font-body;
-  margin-bottom: $space-sm;
-  color: $color-text;
+    font-family: $font-body;
+    margin-bottom: $space-sm;
+    color: $color-text;
 }
 
 // ==================================
 // Layout Utilities
 // ==================================
 .container {
-  width: 100%;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: $space-lg;
-  padding-right: $space-lg;
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: $space-lg;
+    padding-right: $space-lg;
 }
 
 .section-content {
-  margin-left: $spacing-container;
-  margin-right: $spacing-container;
+    margin-left: $spacing-container;
+    margin-right: $spacing-container;
 
-  @include respond-mobile {
-    margin-left: $space-sm;
-    margin-right: $space-sm;
-  }
+    @include respond-mobile {
+        margin-left: $space-sm;
+        margin-right: $space-sm;
+    }
 }
 
 .section-content ul, ol {
-  padding-left: 2em;
-  margin-left: 1em;
-  line-height: 1.6;
+    padding-left: 2em;
+    margin-left: 1em;
+    line-height: 1.6;
 }
 
 .page-wrapper {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .main-content {
-  flex: 1;
-  padding-bottom: $space-xl;
+    flex: 1;
+    padding-bottom: $space-xl;
 }
 
 // ==================================
 // Table Styles
 // ==================================
 table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: $space-md 0;
-  font-size: 1rem;
-  color: $color-text;
+    width: 100%;
+    border-collapse: collapse;
+    margin: $space-md 0;
+    font-size: 1rem;
+    color: $color-text;
 
-  thead {
-    background-color: darken($color-background, 5%);
-  }
+    thead {
+        background-color: darken($color-background, 5%);
+    }
 
-  th,
-  td {
-    border: 1px solid lighten($color-shadow, 10%);
-    text-align: left;
-    padding: $space-xs $space-sm;
-  }
+    th,
+    td {
+        border: 1px solid lighten($color-shadow, 10%);
+        text-align: left;
+        padding: $space-xs $space-sm;
+    }
 
-  th {
-    font-family: $font-heading;
-    font-weight: bold;
-    color: $color-heading;
-  }
+    th {
+        font-family: $font-heading;
+        font-weight: bold;
+        color: $color-heading;
+    }
 
-  tr:nth-child(even) {
-    background-color: lighten($color-background, 5%);
-  }
+    tr:nth-child(even) {
+        background-color: lighten($color-background, 5%);
+    }
 }
 
 // ==================================
 // Utility & Component Classes
 // ==================================
 .section-dark {
-  background-color: $color-background;
+    background-color: $color-background;
 }
 
 .image-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: $space-sm;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: $space-lg;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $space-sm;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: $space-lg;
 }
 
 .image-with-subtitle {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  max-width: 100%;
-  flex: 1 1 300px;
-  margin: $space-sm;
-
-  img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     max-width: 100%;
-    height: auto;
-    display: block;
-  }
+    flex: 1 1 300px;
+    margin: $space-sm;
 
-  figcaption {
-    margin-top: $space-xs;
-    font-size: 0.9rem;
-    color: lighten($color-text, 30%);
-  }
+    img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    figcaption {
+        margin-top: $space-xs;
+        font-size: 0.9rem;
+        color: lighten($color-text, 30%);
+    }
 }
 
 .image-hover-swap {
-  position: relative;
-  display: inline-block;
+    position: relative;
+    display: inline-block;
 
-  img {
-    transition: opacity 0.3s ease-in-out;
+    img {
+        transition: opacity 0.3s ease-in-out;
 
-    &.hover-image {
-      position: absolute;
-      top: 0;
-      left: 0;
-      opacity: 0;
-    }
-  }
-
-  &:hover {
-    .hover-image {
-      opacity: 1;
+        &.hover-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+        }
     }
 
-    .default-image {
-      opacity: 0;
+    &:hover {
+        .hover-image {
+            opacity: 1;
+        }
+
+        .default-image {
+            opacity: 0;
+        }
     }
-  }
 }
 
 // ==================================
@@ -229,31 +229,51 @@ table {
 // ==================================
 
 .math-left mjx-container {
-  text-align: left !important;
-  margin-left: 0 !important;
-  margin-right: auto !important;
+    text-align: left !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
 }
 
 .math-center mjx-container {
-  text-align: center !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
 .math-right mjx-container {
-  text-align: right !important;
-  margin-left: auto !important;
-  margin-right: 0 !important;
+    text-align: right !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
 }
 
 /* Font sizes for mjx-container */
-.math-size-50 mjx-container { font-size: 0.5em !important; }
-.math-size-75 mjx-container { font-size: 0.75em !important; }
-.math-size-90 mjx-container { font-size: 0.9em !important; }
-.math-size-100 mjx-container { font-size: 1em !important; }
-.math-size-125 mjx-container { font-size: 1.25em !important; }
-.math-size-150 mjx-container { font-size: 1.5em !important; }
-.math-size-200 mjx-container { font-size: 2em !important; }
+.math-size-50 mjx-container {
+    font-size: 0.5em !important;
+}
+
+.math-size-75 mjx-container {
+    font-size: 0.75em !important;
+}
+
+.math-size-90 mjx-container {
+    font-size: 0.9em !important;
+}
+
+.math-size-100 mjx-container {
+    font-size: 1em !important;
+}
+
+.math-size-125 mjx-container {
+    font-size: 1.25em !important;
+}
+
+.math-size-150 mjx-container {
+    font-size: 1.5em !important;
+}
+
+.math-size-200 mjx-container {
+    font-size: 2em !important;
+}
 
 // ==================================
 // Code Styling
@@ -261,174 +281,282 @@ table {
 
 // Code blocks (inside <pre><code>) get styled by .highlight
 pre code {
-  padding: 0;
-  background: none;
-  color: inherit;
-  font-size: inherit;
+    padding: 0;
+    background: none;
+    color: inherit;
+    font-size: inherit;
 }
 
 // Inline code only
 p code, li code {
-  padding: 0.2em 0.4em;
-  font-size: 0.95rem;
-  background-color: lighten($color-background, 5%);
-  color: lighten($color-accent, 5%);
-  border-radius: 3px;
+    padding: 0.2em 0.4em;
+    font-size: 0.95rem;
+    background-color: lighten($color-background, 5%);
+    color: lighten($color-accent, 5%);
+    border-radius: 3px;
 }
 
 .highlight {
-  background: darken($color-background, 3%);
-  padding: 0;
-  overflow-x: auto;
-  border-radius: 6px;
-  border: 1px solid lighten($color-shadow, 10%);
-  margin-bottom: $space-md;
-
-  pre {
-    margin: 0;
-    padding: $space-sm;
-    background: transparent;
-    color: $color-text;
-    font-family: 'Fira Code', 'Courier New', Courier, monospace;
-    font-size: 0.95rem;
-    line-height: 1.5;
-  }
-
-  table {
-    width: 100%;
-    border: none;
-    border-collapse: collapse;
-  }
-
-  td {
+    background: darken($color-background, 3%);
     padding: 0;
-    border: none;
-  }
+    overflow-x: auto;
+    border-radius: 6px;
+    border: 1px solid lighten($color-shadow, 10%);
+    margin-bottom: $space-md;
 
-  .gutter {
-    display: none;
-  }
+    pre {
+        margin: 0;
+        padding: $space-sm;
+        background: transparent;
+        color: $color-text;
+        font-family: 'Fira Code', 'Courier New', Courier, monospace;
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
 
-  // Rouge token styles
-  .c, .c1, .cm, .cp { color: #6a9955; font-style: italic; }  // Comments in nice green
-  .k, .kd, .kp, .kr, .kt { color: $color-accent; font-weight: bold; }  // Keywords
-  .nf { color: $color-heading; font-weight: bold; }  // Function names
-  .na { color: lighten($color-heading, 10%); }  // Attribute names
-  .nb { color: $color-accent; }  // Built-in names
-  .nc { color: lighten($color-text, 5%); font-weight: bold; }  // Class names
-  .no { color: lighten($color-accent, 15%); }  // Constants
-  .nv { color: $color-text; }  // Variable names (back to base text color)
-  .s, .s1, .s2 { color: #d19a66; }  // Strings
-  .mi, .mf { color: lighten($color-heading, 20%); }  // Numbers
-  .o { color: #56b6c2; }  // Operators
-  .p { color: lighten($color-shadow, 25%); }  // Punctuation
-  .err { color: red; background-color: yellow; font-weight: bold; }  // Errors
+    table {
+        width: 100%;
+        border: none;
+        border-collapse: collapse;
+    }
+
+    td {
+        padding: 0;
+        border: none;
+    }
+
+    .gutter {
+        display: none;
+    }
+    // Rouge token styles
+    .c, .c1, .cm, .cp {
+        color: #6a9955;
+        font-style: italic;
+    }
+    // Comments in nice green
+    .k, .kd, .kp, .kr, .kt {
+        color: $color-accent;
+        font-weight: bold;
+    }
+    // Keywords
+    .nf {
+        color: $color-heading;
+        font-weight: bold;
+    }
+    // Function names
+    .na {
+        color: lighten($color-heading, 10%);
+    }
+    // Attribute names
+    .nb {
+        color: $color-accent;
+    }
+    // Built-in names
+    .nc {
+        color: lighten($color-text, 5%);
+        font-weight: bold;
+    }
+    // Class names
+    .no {
+        color: lighten($color-accent, 15%);
+    }
+    // Constants
+    .nv {
+        color: $color-text;
+    }
+    // Variable names (back to base text color)
+    .s, .s1, .s2 {
+        color: #d19a66;
+    }
+    // Strings
+    .mi, .mf {
+        color: lighten($color-heading, 20%);
+    }
+    // Numbers
+    .o {
+        color: #56b6c2;
+    }
+    // Operators
+    .p {
+        color: lighten($color-shadow, 25%);
+    }
+    // Punctuation
+    .err {
+        color: red;
+        background-color: yellow;
+        font-weight: bold;
+    }
+    // Errors
 }
 
 // ==================================
 // Image Width Classes
 // ==================================
 [class^="img-"] {
-  max-width: 100%;
-  height: auto;
-  display: block;
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 $img-widths: (10, 20, 33, 50, 67);
 
 @each $w in $img-widths {
-  .img-#{$w} {
-    width: #{$w}vw;
+    .img-#{$w} {
+        width: #{$w}vw;
 
-    @include respond-mobile {
-      width: 100% !important;
-      flex-basis: 100% !important;
-      max-width: 100% !important;
+        @include respond-mobile {
+            width: 100% !important;
+            flex-basis: 100% !important;
+            max-width: 100% !important;
+        }
     }
-  }
 }
 
 .current-link {
-  color: $color-accent;
-  font-weight: bold;
+    color: $color-accent;
+    font-weight: bold;
 }
 
 .site-footer {
-  font-family: $font-footer;
-  font-size: $font-size-footer;
-  text-align: center;
-  padding: $space-lg 0;
-  border-top: 1px solid lighten($color-shadow, 10%);
-  margin-top: $space-xxl;
-  color: $color-text;
+    font-family: $font-footer;
+    font-size: $font-size-footer;
+    text-align: center;
+    padding: $space-lg 0;
+    border-top: 1px solid lighten($color-shadow, 10%);
+    margin-top: $space-xxl;
+    color: $color-text;
 }
 
 // ==================================
 // Link Styles
 // ==================================
 a {
-  color: $color-accent;
-  text-decoration: none;
+    color: $color-accent;
+    text-decoration: none;
 
-  &:hover,
-  &:focus {
-    text-decoration: underline;
-    color: lighten($color-accent, 10%);
-  }
+    &:hover,
+    &:focus {
+        text-decoration: underline;
+        color: lighten($color-accent, 10%);
+    }
 }
 
 // ==================================
 // Header Styles
 // ==================================
 .site-header {
-  background-color: $color-background;
-  border-bottom: 1px solid lighten($color-shadow, 10%);
-  padding: $space-md 0;
-  color: $color-text;
+    background-color: $color-background;
+    border-bottom: 1px solid lighten($color-shadow, 10%);
+    padding: $space-md 0;
+    color: $color-text;
 }
 
 .nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: $space-md;
 }
 
 .site-title a {
-  font-family: $font-heading;
-  font-size: 2rem;
-  font-weight: bold;
-  color: $color-accent;
-  text-decoration: none;
+    font-family: $font-heading;
+    font-size: 2rem;
+    font-weight: bold;
+    color: $color-accent;
+    text-decoration: none;
 }
 
 .main-nav a {
-  margin-left: $space-md;
-  font-size: 1rem;
-  color: $color-text;
-  text-decoration: none;
+    margin-left: $space-md;
+    font-size: 1rem;
+    color: $color-text;
+    text-decoration: none;
 
-  &:hover {
+    &:hover {
+        color: lighten($color-accent, 10%);
+    }
+
+    &.current-link {
+        color: $color-accent;
+        font-weight: bold;
+    }
+}
+
+.dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-title {
+    margin-left: $space-md;
+    font-size: 1rem;
+    color: $color-text;
+    cursor: pointer;
+
+    &:hover {
+        color: lighten($color-accent, 10%);
+    }
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: auto;
+
+    background-color: $color-background;
+    border: 1px solid lighten($color-shadow, 10%);
+    border-radius: 6px;
+    min-width: 160px;
+    padding: $space-xs 0;
+    z-index: 1000;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: $space-xs $space-md;
+    margin-left: 0;
+    color: $color-text;
+}
+
+.dropdown-content a:hover {
+    background-color: lighten($color-background, 5%);
     color: lighten($color-accent, 10%);
-  }
+}
 
-  &.current-link {
-    color: $color-accent;
-    font-weight: bold;
-  }
+.dropdown:hover .dropdown-content {
+    display: block;
 }
 
 @include respond-mobile {
-  .nav-container {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: $space-xs;
-  }
+    .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: $space-xs;
+    }
 
-  .main-nav a {
-    margin-left: 0;
-  }
+    .main-nav a {
+        margin-left: 0;
+    }
+
+    .dropdown-title {
+        margin-left: 0;
+    }
+
+    .dropdown-content {
+        position: static;
+        border: none;
+        padding-left: $space-md;
+    }
 }

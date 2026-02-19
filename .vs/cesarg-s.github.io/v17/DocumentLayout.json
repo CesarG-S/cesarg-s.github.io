@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\cgarc\\Desktop\\website\\cesarg-s.github.io\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\cgarc\\Desktop\\website\\cesarg-s.github.io\\_includes\\navigation.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:_includes\\navigation.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\cgarc\\Desktop\\website\\cesarg-s.github.io\\_layouts\\default.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:_layouts\\default.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\cgarc\\Desktop\\website\\cesarg-s.github.io\\_includes\\header.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:_includes\\header.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\cgarc\\Desktop\\website\\cesarg-s.github.io\\_data\\navigation.yml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:_data\\navigation.yml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "navigation.html",
+              "DocumentMoniker": "C:\\Users\\cgarc\\Desktop\\website\\cesarg-s.github.io\\_includes\\navigation.html",
+              "RelativeDocumentMoniker": "_includes\\navigation.html",
+              "ToolTip": "C:\\Users\\cgarc\\Desktop\\website\\cesarg-s.github.io\\_includes\\navigation.html*",
+              "RelativeToolTip": "_includes\\navigation.html*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-02-18T22:20:56.59Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "header.html",
+              "DocumentMoniker": "C:\\Users\\cgarc\\Desktop\\website\\cesarg-s.github.io\\_includes\\header.html",
+              "RelativeDocumentMoniker": "_includes\\header.html",
+              "ToolTip": "C:\\Users\\cgarc\\Desktop\\website\\cesarg-s.github.io\\_includes\\header.html",
+              "RelativeToolTip": "_includes\\header.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-02-18T22:19:13.345Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "default.html",
+              "DocumentMoniker": "C:\\Users\\cgarc\\Desktop\\website\\cesarg-s.github.io\\_layouts\\default.html",
+              "RelativeDocumentMoniker": "_layouts\\default.html",
+              "ToolTip": "C:\\Users\\cgarc\\Desktop\\website\\cesarg-s.github.io\\_layouts\\default.html",
+              "RelativeToolTip": "_layouts\\default.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-02-18T22:18:19.075Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "navigation.yml",
+              "DocumentMoniker": "C:\\Users\\cgarc\\Desktop\\website\\cesarg-s.github.io\\_data\\navigation.yml",
+              "RelativeDocumentMoniker": "_data\\navigation.yml",
+              "ToolTip": "C:\\Users\\cgarc\\Desktop\\website\\cesarg-s.github.io\\_data\\navigation.yml",
+              "RelativeToolTip": "_data\\navigation.yml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
+              "WhenOpened": "2026-02-18T22:18:07.786Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

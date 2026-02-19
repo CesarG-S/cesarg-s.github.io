@@ -1,9 +1,40 @@
 <header class="site-header">
-  <div class="nav-container"> 
-    <nav class="main-nav">
-      {% for item in site.data.navigation %}
-        <a href="{{ item.link }}"{% if page.url == item.link %} class="current-link"{% endif %}>{{ item.name }}</a>
-      {% endfor %}
-    </nav>
-  </div>
+    <div class="nav-container">
+        <nav class="main-nav">
+
+            {% for item in site.data.navigation %}
+
+            {% if item.children %}
+
+            <div class="dropdown">
+                <span class="dropdown-title">{{ item.name }}</span>
+
+                <div class="dropdown-content">
+                    {% for child in item.children %}
+                    <a href="{{ child.link }}"
+                       {% if page.url == child.link %}
+                       class="current-link"
+                       {% endif %}>
+                        {{ child.name }}
+                    </a>
+                    {% endfor %}
+                </div>
+
+            </div>
+
+            {% else %}
+
+            <a href="{{ item.link }}"
+               {% if page.url == item.link %}
+               class="current-link"
+               {% endif %}>
+                {{ item.name }}
+            </a>
+
+            {% endif %}
+
+            {% endfor %}
+
+        </nav>
+    </div>
 </header>

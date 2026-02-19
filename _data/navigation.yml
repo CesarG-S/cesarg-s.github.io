@@ -1,16 +1,25 @@
 - name: Home
   link: /
+
 - name: About
   link: /about/
-- name: Project 0
-  link: /project0/
-- name: Project 1
-  link: /project1/
-- name: Project 2
-  link: /project2/
-- name: Project 3
-  link: /project3/
-- name: Project 4
-  link: /project4/
-- name: Project 5
-  link: /project5/
+
+- name: CS180
+  children: 
+  - name: Project 0
+    link: /cs180/project0/
+  - name: Project 1
+    link: /cs180/project1/
+  - name: Project 2
+    link: /cs180/project2/
+  - name: Project 3
+    link: /cs180/project3/
+  - name: Project 4
+    link: /cs180/project4/
+  - name: Project 5
+    link: /cs180/project5/
+
+- name: CS184
+  children:
+  - name: Homework 1
+    link: /cs184/hw1  

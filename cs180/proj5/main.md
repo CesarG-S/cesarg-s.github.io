@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: /project5/
+permalink: /cs180/project5/
 title: CS180 - Project 5
 ---
 ## Introduction
