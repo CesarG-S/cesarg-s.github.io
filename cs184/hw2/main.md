@@ -209,6 +209,30 @@ Boundary triangles are a special case that require additional logic to handle. W
 
 In all, we create two new edges, two halfedge+twin pairs, one face, and one vertex. It is important to ensure that the edge that touches the boundary is properly labeled as such.
 
+It was really hard to show an example of the boundary splitting in action, but we found a single triangle that was considered a boundary on the teapot mesh.
+
+<div class="image-row"> 
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/cs184/hw2/p5-teapot-boundary-presplit.png" alt="Teapot boundary edge split before" class="img-33">
+        <figcaption>Teapot boundary presplit</figcaption>
+    </figure>
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/cs184/hw2/p5-teapot-boundary-postsplit.png" alt="Teapot boundary edge split after" class="img-33">
+        <figcaption>Teapot boundary postsplit</figcaption>
+    </figure>
+</div>
+
+<div class="image-row"> 
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/cs184/hw2/p5-teapot-boundary-presplit-zoom.png" alt="Teapot boundary edge split before; zoomed" class="img-33">
+        <figcaption>Teapot boundary presplit (zoomed)</figcaption>
+    </figure>
+    <figure class="image-with-subtitle">
+        <img src="/assets/images/cs184/hw2/p5-teapot-boundary-postsplit-zoom.png" alt="Teapot boundary edge split after; zoomed" class="img-33">
+        <figcaption>Teapot boundary postsplit (zoomed)</figcaption>
+    </figure>
+</div>
+
 ## Loop Subdivision
 We implemented loop subdivision based on the instructions in the spec. We first calculated the newPosition of each vertex with the positions of its neighbors, using the equations given in the homework spec and set the isNew of these vertices to false. Then, we iterate through all the edges in the mesh, similarly setting their newPosition accordingly and isNew to false. We then iterate through and split all edges where the distinction of new and old edges are handled by our splitEdge method. We iterate through all edges again to check if an edge now connects an old and new edge. If this is the case, we call flipEdge on it. Finally, we set the position of each vertex to their newPosition.
 
