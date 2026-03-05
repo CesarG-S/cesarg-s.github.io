@@ -194,7 +194,7 @@ Below is an example of performing edge split on a few edges:
 
 An interesting thing to note is that the order of flips and splits does have an effect on the final topography of the mesh. I believe the order of flips and splits will matter for upscaling or downscaling if we would like to maintain certain attributes of the mesh, like "evenness" of the distribution of edges.
 
-Boundary triangles are a special case that require additional logic to handle. We don't split boundary triangles, and instead use the following diagram to determine which edges and faces to create:
+Boundary triangles are a special case that require additional logic to handle. We don't split boundary polygons, and instead use the following diagram to determine which edges and faces to create:
 
 <div class="image-row"> 
     <figure class="image-with-subtitle">
@@ -210,63 +210,63 @@ Boundary triangles are a special case that require additional logic to handle. W
 In all, we create two new edges, two halfedge+twin pairs, one face, and one vertex. It is important to ensure that the edge that touches the boundary is properly labeled as such.
 
 ## Loop Subdivision
-We implemented loop subdivision based on the instructions in the spec. We first calculated the newPosition of each vertex with the positions of its neighbors, using the equations given in the homework spec and set the isNew of these vertices to False. Then, we iterate through all the edges in the mesh, similarly setting their newPosition accordingly and isNew to False. We then iterate through and split all edges where the distinction of new and old edges are handled by our splitEdge method. We iterate through all edges again to check if an edge now connects an old and new edge. If this is the case, we call flipEdge on it. Finally, we set the position of each vertex to their newPosition.
+We implemented loop subdivision based on the instructions in the spec. We first calculated the newPosition of each vertex with the positions of its neighbors, using the equations given in the homework spec and set the isNew of these vertices to false. Then, we iterate through all the edges in the mesh, similarly setting their newPosition accordingly and isNew to false. We then iterate through and split all edges where the distinction of new and old edges are handled by our splitEdge method. We iterate through all edges again to check if an edge now connects an old and new edge. If this is the case, we call flipEdge on it. Finally, we set the position of each vertex to their newPosition.
 
 Most meshes stay the same but take on a smoother appearance due to the increased number of triangles. For meshes with sharp edges and corners, these aspects tend to be smoothed out considerably and the mesh loses its shape. For the cube, pre-splitting the edges on the faces of the cube tends to help the mesh maintain its shape. This is due to the vertices of the new polygons after splitting become closer to the edges so the effect of averaging neighboring vertices’ locations becomes less drastic around the sharper edges.
 
 <div class="image-row"> 
     <figure class="image-with-subtitle">
-        <img src="/assets/images/cs184/hw2/p6-split0-subdiv0.png" alt="Cube e0s0" class="img-33">
+        <img src="/assets/images/cs184/hw2/p6-split0-subdiv0.png" alt="Cube e0s0" class="img-20">
         <figcaption>Cube pre-edge-splits=0 subdivisions=0</figcaption>
     </figure>
     <figure class="image-with-subtitle">
-        <img src="/assets/images/cs184/hw2/p6-split0-subdiv1.png" alt="Cube e0s1" class="img-33">
+        <img src="/assets/images/cs184/hw2/p6-split0-subdiv1.png" alt="Cube e0s1" class="img-20">
         <figcaption>Cube pre-edge-splits=0 subdivisions=1</figcaption>
     </figure>
     <figure class="image-with-subtitle">
-        <img src="/assets/images/cs184/hw2/p6-split0-subdiv2.png" alt="Cube e0s2" class="img-33">
+        <img src="/assets/images/cs184/hw2/p6-split0-subdiv2.png" alt="Cube e0s2" class="img-20">
         <figcaption>Cube pre-edge-splits=0 subdivisions=2</figcaption>
     </figure>
     <figure class="image-with-subtitle">
-        <img src="/assets/images/cs184/hw2/p6-split0-subdiv3.png" alt="Cube e0s2" class="img-33">
+        <img src="/assets/images/cs184/hw2/p6-split0-subdiv3.png" alt="Cube e0s2" class="img-20">
         <figcaption>Cube pre-edge-splits=0 subdivisions=3</figcaption>
     </figure>
 </div>
 
 <div class="image-row"> 
     <figure class="image-with-subtitle">
-        <img src="/assets/images/cs184/hw2/p6-split1-subdiv0.png" alt="Cube e1s0" class="img-33">
+        <img src="/assets/images/cs184/hw2/p6-split1-subdiv0.png" alt="Cube e1s0" class="img-20">
         <figcaption>Cube pre-edge-splits=1 subdivisions=0</figcaption>
     </figure>
     <figure class="image-with-subtitle">
-        <img src="/assets/images/cs184/hw2/p6-split1-subdiv1.png" alt="Cube e1s1" class="img-33">
+        <img src="/assets/images/cs184/hw2/p6-split1-subdiv1.png" alt="Cube e1s1" class="img-20">
         <figcaption>Cube pre-edge-splits=1 subdivisions=1</figcaption>
     </figure>
     <figure class="image-with-subtitle">
-        <img src="/assets/images/cs184/hw2/p6-split1-subdiv2.png" alt="Cube e1s2" class="img-33">
+        <img src="/assets/images/cs184/hw2/p6-split1-subdiv2.png" alt="Cube e1s2" class="img-20">
         <figcaption>Cube pre-edge-splits=1 subdivisions=2</figcaption>
     </figure>
     <figure class="image-with-subtitle">
-        <img src="/assets/images/cs184/hw2/p6-split1-subdiv3.png" alt="Cube e1s3" class="img-33">
+        <img src="/assets/images/cs184/hw2/p6-split1-subdiv3.png" alt="Cube e1s3" class="img-20">
         <figcaption>Cube pre-edge-splits=1 subdivisions=3</figcaption>
     </figure>
 </div>
 
 <div class="image-row"> 
     <figure class="image-with-subtitle">
-        <img src="/assets/images/cs184/hw2/p6-split2-subdiv0.png" alt="Cube e2s0" class="img-33">
+        <img src="/assets/images/cs184/hw2/p6-split2-subdiv0.png" alt="Cube e2s0" class="img-20">
         <figcaption>Cube pre-edge-splits=2 subdivisions=0</figcaption>
     </figure>
     <figure class="image-with-subtitle">
-        <img src="/assets/images/cs184/hw2/p6-split2-subdiv1.png" alt="Cube e2s1" class="img-33">
+        <img src="/assets/images/cs184/hw2/p6-split2-subdiv1.png" alt="Cube e2s1" class="img-20">
         <figcaption>Cube pre-edge-splits=2 subdivisions=1</figcaption>
     </figure>
     <figure class="image-with-subtitle">
-        <img src="/assets/images/cs184/hw2/p6-split2-subdiv2.png" alt="Cube e2s2" class="img-33">
+        <img src="/assets/images/cs184/hw2/p6-split2-subdiv2.png" alt="Cube e2s2" class="img-20">
         <figcaption>Cube pre-edge-splits=2 subdivisions=2</figcaption>
     </figure>
     <figure class="image-with-subtitle">
-        <img src="/assets/images/cs184/hw2/p6-split2-subdiv3.png" alt="Cube e2s3" class="img-33">
+        <img src="/assets/images/cs184/hw2/p6-split2-subdiv3.png" alt="Cube e2s3" class="img-20">
         <figcaption>Cube pre-edge-splits=2 subdivisions=3</figcaption>
     </figure>
 </div>
